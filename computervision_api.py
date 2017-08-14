@@ -59,7 +59,7 @@ for user_id in user_ids:
     with open(result_name + "_cv.jsonl", 'a') as f:
         for photo_name in photo_names:
             image_name = photo_path + '/' + photo_name
-            results = computer_vision_api(image_name, cv_subscription_key)
+            results = computer_vision_api(image_name, subscription_key)
             photo_dict = {}
             photo_dict[photo_name] = results
             f.write(json.dumps(photo_dict) + '\n')
