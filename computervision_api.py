@@ -29,3 +29,26 @@ def computer_vision_api(filename, subscription_key):
     
     return results
 
+
+#########################
+
+cv_subscription_key = ""
+
+for user_id in user_ids:
+
+    result_name = results_path + "/" + user_id
+
+    photo_path = ids_path + user_id
+    photo_names = os.listdir(photo_path)
+    photo_names = [photo_name for photo_name in photo_names if not photo_name.startswith('.')]
+    
+    with open(result_name + "_cv.jsonl", 'a') as f:
+        for photo_name in photo_names:
+            image_name = photo_path + '/' + photo_name
+            results = anl.computer_vision_api(image_name, cv_subscription_key)
+            photo_dict = {}
+            photo_dict[photo_name] = results
+            f.write(json.dumps(photo_dict) + '\n')
+            
+            time.sleep(5)
+
