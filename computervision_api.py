@@ -1,8 +1,18 @@
 
-
 ########  Microsoft Computer Vision 을 이용한 사진 내용 분석  ########
 
 import requests
+import pprint
+import os
+
+subscription_key = ""
+
+ids_path = "./images/"
+user_ids = os.listdir(ids_path)
+user_ids = [user_id for user_id in user_ids if not user_id.startswith('.')]
+
+results_path = "./results/"
+
 
 def computer_vision_api(filename, subscription_key):
     
@@ -31,8 +41,6 @@ def computer_vision_api(filename, subscription_key):
 
 
 #########################
-
-cv_subscription_key = ""
 
 for user_id in user_ids:
 
